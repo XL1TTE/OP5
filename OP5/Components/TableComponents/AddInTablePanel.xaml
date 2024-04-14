@@ -1,0 +1,41 @@
+﻿<UserControl x:Class="OP5.Components.TableComponents.AddInTablePanel"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:OP5.Components.TableComponents"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="260">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="120"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0">
+            <TextBlock Text="Добавить дисциплину" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="18"/>
+        </Grid>
+        <Grid Grid.Row="1">
+            <StackPanel Orientation="Vertical" Margin="15"
+              VerticalAlignment="Center">
+                <TextBlock Text="Название дисциплины"/>
+                <TextBox Text="{Binding ExamTitle, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                <TextBlock Text="Преподователь"/>
+                <TextBox Text="{Binding LectorName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                <TextBlock Text="Уровень сложности"/>
+                <ComboBox ItemsSource="{Binding Difficulties}" SelectedItem="{Binding Difficalte, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}"/>
+                <TextBlock Text="Дата зачета или экзамена"/>
+                <DatePicker SelectedDate="{Binding ExamDate, Mode=OneWayToSource}"
+                            SelectedDateFormat="Short"/>
+            </StackPanel>
+        </Grid>
+        <Grid Grid.Row="2">
+            <StackPanel>
+                <Button Content="Добавить" Margin="0 10 0 10" Height="40" Width="120" Command="{Binding AddInTableCommand}"/>
+                <Button Content="Удалить" Margin="0 10 0 10" Height="40" Width="120" Command="{Binding RemoveFromTableCommand}"/>
+            </StackPanel>
+        </Grid>
+      
+    </Grid>
+</UserControl>

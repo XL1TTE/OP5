@@ -1,0 +1,29 @@
+﻿<UserControl x:Class="OP5.Components.TableComponents.ExamTablePanel"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:OP5.Components.TableComponents"
+             xmlns:conv="clr-namespace:OP5.Convertors"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <conv:EnumConvertor x:Key="EnumConverter"/>
+        <conv:DateConvertor x:Key="DateConverter"/>
+        <Style TargetType="DataGridCell">
+            <Setter Property="TextBlock.TextAlignment" Value="Center" />
+        </Style>
+    </UserControl.Resources>
+    <Grid>
+        <DataGrid ItemsSource="{Binding TableList}"
+                  AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Название" Binding="{Binding title}"/>
+                <DataGridTextColumn Header="Преподаватель" Binding="{Binding lector}"/>
+                <DataGridTextColumn Header="Сложность" Binding="{Binding difficalty, Converter={StaticResource EnumConverter}}" />
+                <DataGridTextColumn Header="Дата зачета/экзамена" Binding="{Binding startDate, Converter={StaticResource DateConverter}}"/>
+                <DataGridTextColumn Header="Дата старта подготовки" Binding="{Binding prepareDateStart, Converter={StaticResource DateConverter}}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</UserControl>
